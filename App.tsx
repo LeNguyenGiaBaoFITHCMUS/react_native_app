@@ -1,19 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState<string>("Rock");
+  const [test, setTest] = useState({
+    name: "Bao",
+    age: 22
+  });
+  const [count, setCount] = useState(0);
   // jsx
   return (
     <View style={styles.container}>
+      <Text style={{fontSize: 40, fontWeight: 'bold'}}>Hello world! {test.name} is learning SE</Text>
+      <Text style={{color: 'red', fontSize: 60}}>count = {count}</Text>
       <View>
-        <Text style={styles.header}>Welcome</Text>
-        <Text style={styles.parent}>
-          Parent
-          <Text style={styles.child}>Child</Text>
-        </Text>
-        
+        {/* <Button title='Increase' onPress={() => alert("tap tap")}/> */}
+        <Button color={'brown'} title='Increase' onPress={() => setCount(count + 2)}/>
       </View>
-      <Text style={styles.hello1}>Hello world! Rock is learning SE</Text>
-      <Text style={{fontSize: 20, fontWeight: 'bold'}}>Hello world! Rock is learning SE</Text>
     </View>
   );
 }
@@ -25,27 +28,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  header: {
-    fontSize: 60,
-    fontWeight: 'bold'
-  },
-  hello1: {
-    color: 'orange',
-    borderWidth: 2,
-    borderColor: 'blue',
-    padding: 10
-  },
-  parent: {
-    color: 'brown',
-    padding: 10,
-    borderColor: 'brown',
-    borderWidth: 2
-  },
-  child: {
-    color: 'violet',
-    padding: 10,
-    borderColor: 'violet',
-    borderWidth: 2
   }
 });
