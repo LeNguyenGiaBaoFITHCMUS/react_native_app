@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
 
 export default function App() {
   const [students, setStudent] = useState([
@@ -11,7 +11,7 @@ export default function App() {
     {id: 6, name: 'Rock6', age: 22},
     {id: 7, name: 'Rock7', age: 22},
     {id: 8, name: 'Rock8', age: 22},
-    {id: 9, name: 'Rock8', age: 22},
+    {id: 9, name: 'Rock9', age: 22},
     {id: 10, name: 'Rock10', age: 22},
   ]);
 
@@ -19,7 +19,24 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={{fontSize: 40, fontWeight: 'bold'}}>Hello world!</Text>
-      <ScrollView>
+      <FlatList
+        data={students}
+        // numColumns={2}
+        keyExtractor={item => item.id + ''} // string
+        renderItem={data => { // renderItem={{item} => {... <Text>{item.name}</Text> ...}}
+          return (
+            <View style={{
+              padding: 30,
+              backgroundColor: 'blue',
+              marginBottom: 20,
+              marginHorizontal: 30,
+            }}>
+              <Text>{data.item.name}</Text>
+            </View>
+          )
+        }}
+      />
+      {/* <ScrollView>
         {students.map(item => {
           return (
             <View key={item.id} style={{
@@ -31,7 +48,7 @@ export default function App() {
             </View>
           )
         })}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }
